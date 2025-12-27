@@ -1,7 +1,7 @@
 import type { HydratedDocument } from "mongoose";
 
 import { connectToDatabase } from "@/lib/mongoose";
-import ProductModel, { Product, ProductInput } from "@/models/Product";
+import ProductModel, { Product, ProductInput } from "@/models/Project";
 
 type ProductDocument = HydratedDocument<ProductInput>;
 

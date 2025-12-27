@@ -3,7 +3,7 @@
 import { NextResponse } from "next/server";
 
 import { z } from "zod";
-import { statusValues } from "@/models/Product";
+import { statusValues } from "@/models/Project";
 import { addProduct, deleteProduct, getProduct, getProducts, updateProduct } from "@/services/demo";
 
 const objectIdSchema = z.string().regex(/^[0-9a-fA-F]{24}$/, "Invalid MongoDB ObjectId");
