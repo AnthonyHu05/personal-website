@@ -26,12 +26,26 @@ export async function updateProject(
     data: Partial<ProjectInput>,
 ): Promise<Project | null> {
     await connectToDatabase();
-    const updatedProject = await ProjectModel.findByIdAndUpdate(id, data, {
-        new: true,
-        runValidators: true,
-    }).exec();
+    
+    // 过滤掉 undefined 值，但保留 null 和空字符串
+    const updateData: Record<string, unknown> = {};
+    Object.keys(data).forEach((key) => {
+        if (data[key as keyof ProjectInput] !== undefined) {
+            updateData[key] = data[key as keyof ProjectInput];
+        }
+    });
+    
+    const updatedProject = await ProjectModel.findByIdAndUpdate(
+        id,
+        { $set: updateData },
+        {
+            new: true,
+            runValidators: true,
+        }
+    ).exec();
     return updatedProject ? toProject(updatedProject) : null;
 }
+
 
 export async function addProject(newProject: ProjectInput): Promise<Project> {
     await connectToDatabase();

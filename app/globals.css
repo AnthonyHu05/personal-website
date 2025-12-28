@@ -6,97 +6,118 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-@layer base {
-    :root {
-        --background: 0 0% 100%;
-        --foreground: 240 10% 3.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 240 10% 3.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 240 10% 3.9%;
-        --primary: 240 5.9% 10%;
-        --primary-foreground: 0 0% 98%;
-        --secondary: 240 4.8% 95.9%;
-        --secondary-foreground: 240 5.9% 10%;
-        --muted: 240 4.8% 95.9%;
-        --muted-foreground: 240 3.8% 46.1%;
-        --accent: 240 4.8% 95.9%;
-        --accent-foreground: 240 5.9% 10%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 240 5.9% 90%;
-        --input: 240 5.9% 90%;
-        --ring: 240 10% 3.9%;
-        --chart-1: 12 76% 61%;
-        --chart-2: 173 58% 39%;
-        --chart-3: 197 37% 24%;
-        --chart-4: 43 74% 66%;
-        --chart-5: 27 87% 67%;
-        --radius: 0.5rem;
-    }
-    .dark {
-        --background: 240 10% 3.9%;
-        --foreground: 0 0% 98%;
-        --card: 240 10% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 240 10% 3.9%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
-        --primary-foreground: 240 5.9% 10%;
-        --secondary: 240 3.7% 15.9%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 240 3.7% 15.9%;
-        --muted-foreground: 240 5% 64.9%;
-        --accent: 240 3.7% 15.9%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 240 3.7% 15.9%;
-        --input: 240 3.7% 15.9%;
-        --ring: 240 4.9% 83.9%;
-        --chart-1: 220 70% 50%;
-        --chart-2: 160 60% 45%;
-        --chart-3: 30 80% 55%;
-        --chart-4: 280 65% 60%;
-        --chart-5: 340 75% 55%;
-    }
-}
-
-@layer base {
-    * {
-        @apply border-border;
-    }
-    body {
-        @apply bg-background text-foreground;
-    }
-}
-
 @layer components {
+    /* Navigation Bar */
+    .navbar {
+        @apply bg-white border-b border-gray-200 shadow-md sticky top-0 z-50;
+    }
+    .navbar-container {
+        @apply container mx-auto px-6 py-4 flex items-center gap-8;
+    }
+    .nav-link {
+        @apply text-gray-600 hover:text-gray-900 font-medium transition-all duration-200 relative;
+    }
+    .nav-link::after {
+        @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300;
+    }
+    .nav-link:hover::after {
+        @apply w-full;
+    }
+    .nav-link.active {
+        @apply text-gray-900 font-semibold;
+    }
+    .nav-link.active::after {
+        @apply w-full;
+    }
+    /* About Page */
     .about-page {
-        @apply min-h-screen bg-background flex items-center justify-center py-12 px-4 sm:px-8;
+        @apply min-h-screen flex items-center justify-center py-12 px-4 sm:px-8;
     }
     .about-container {
         @apply max-w-4xl w-full;
     }
     .about-card {
-        @apply bg-card rounded-lg shadow-lg p-8 md:p-12;
+        @apply bg-white rounded-lg shadow-lg p-8 md:p-12;
     }
     .about-header {
         @apply flex flex-col md:flex-row md:items-start md:justify-between mb-8;
     }
     .about-title {
-        @apply text-4xl md:text-5xl font-bold text-foreground mb-4;
+        @apply text-4xl md:text-5xl font-bold mb-4;
     }
     .about-photo-wrapper {
         @apply mt-4 md:mt-0 md:ml-8;
     }
     .about-photo {
-        @apply relative w-28 h-28 md:w-36 md:h-36 rounded-lg overflow-hidden border-2 border-border shadow-md;
+        @apply relative w-28 h-28 md:w-36 md:h-36 rounded-lg overflow-hidden border-2 border-gray-200 shadow-md;
     }
     .about-body {
         @apply space-y-4;
     }
     .about-text {
-        @apply text-lg md:text-xl text-muted-foreground leading-relaxed;
+        @apply text-lg md:text-xl text-gray-600 leading-relaxed;
+    }
+
+    /* Experience & Project Pages */
+    .page-container {
+        @apply container mx-auto px-4 py-8;
+    }
+    .page-title {
+        @apply text-3xl font-bold mb-6;
+    }
+    .experience-list,
+    .project-list {
+        @apply space-y-6;
+    }
+    .experience-card,
+    .project-card {
+        @apply border border-gray-300 rounded-lg p-6 shadow-sm;
+    }
+    .card-header {
+        @apply mb-4;
+    }
+    .card-title {
+        @apply text-2xl font-semibold;
+    }
+    .company {
+        @apply text-xl text-gray-700;
+    }
+    .location {
+        @apply text-gray-600;
+    }
+    .date-info {
+        @apply mb-4;
+    }
+    .date-text {
+        @apply text-sm text-gray-500;
+    }
+    .description {
+        @apply text-gray-700;
+    }
+    .error-text {
+        @apply text-red-500;
+    }
+
+    /* Project Specific */
+    .technologies-section {
+        @apply mb-4;
+    }
+    .technologies-label {
+        @apply text-sm font-semibold mb-2;
+    }
+    .technologies-list {
+        @apply flex flex-wrap gap-2;
+    }
+    .tech-tag {
+        @apply px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm;
+    }
+    .link-container {
+        @apply mt-4;
+    }
+    .deployment-link {
+        @apply text-blue-600 hover:text-blue-800 underline;
+    }
+    .links-container {
+        @apply mt-4 space-y-2;
     }
 }

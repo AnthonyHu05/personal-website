@@ -12,8 +12,9 @@ const projectUpdateSchema = z.object({
     technologies: z.array(z.string()).min(1).optional(),
     startDate: z.coerce.date().optional(),
     endDate: z.coerce.date().optional().nullable(),
-    link: z.string().url().optional().or(z.literal("")).nullable(),
-    imageUrl: z.string().url().optional().or(z.literal("")).nullable(),
+    link: z.union([z.string().url(), z.literal("")]).optional().nullable(),
+    githubLink: z.union([z.string().url(), z.literal("")]).optional().nullable(),
+    imageUrl: z.union([z.string().url(), z.literal("")]).optional().nullable(),
 });
 
 // GET: Fetch a single project by ID

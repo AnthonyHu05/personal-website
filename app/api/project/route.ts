@@ -10,8 +10,9 @@ const projectBaseSchema = z.object({
     technologies: z.array(z.string()).min(1),
     startDate: z.coerce.date(),
     endDate: z.coerce.date().optional(),
-    link: z.string().url().optional().or(z.literal("")),
-    imageUrl: z.string().url().optional().or(z.literal("")),
+    link: z.union([z.string().url(), z.literal("")]).optional(),
+    githubLink: z.union([z.string().url(), z.literal("")]).optional(),
+    imageUrl: z.union([z.string().url(), z.literal("")]).optional(),
 });
 
 const projectCreateSchema = projectBaseSchema;

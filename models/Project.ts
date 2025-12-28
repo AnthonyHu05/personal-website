@@ -21,6 +21,7 @@ import {
       startDate: { type: Date, required: true },
       endDate: { type: Date, required: false },
       link: { type: String, required: false },
+      githubLink: { type: String, required: false },
       imageUrl: { type: String, required: false },
     },
     {
